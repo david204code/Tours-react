@@ -9,6 +9,13 @@ function App() {
   const [loading, setLoading]= useState(true);
   const [tours, setTours]= useState([]);
 
+  const removeTour = (id) => {
+    // filter is a method
+    const newTours = tours.filter((tour) => tour.id !== id);
+    // set tours (setTours) into the newTours
+    setTours(newTours);
+  }
+
   const fetchTours= async () => {
     setLoading(true);
 
@@ -38,7 +45,11 @@ function App() {
   }
   return (
     <main>
-      <Tours tours ={tours}/>
+      <Tours 
+        tours ={tours}
+        // past removeTour down as a prop === removeTour props and removeTour function 
+        removeTour ={removeTour}
+      />
     </main>
   );
 }
